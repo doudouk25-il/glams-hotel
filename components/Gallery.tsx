@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { useLanguage } from "./LanguageContext";
 import { useBooking } from "./BookingContext";
 
@@ -188,12 +189,15 @@ export default function Gallery() {
               {/* Card */}
               <div className="relative overflow-hidden rounded-2xl transition-all duration-300 ease-out group-hover:-translate-y-2 group-hover:shadow-[0_20px_45px_-8px_rgba(44,22,24,0.25)]">
 
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src={item.src}
                   alt={item.label}
+                  width={800}
+                  height={600}
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                   loading="lazy"
-                  className="w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                  style={{ width: "100%", height: "auto" }}
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                 />
 
                 {/* Hover overlay — slides up from bottom */}
@@ -293,11 +297,15 @@ export default function Gallery() {
             className="relative max-w-4xl max-h-[88vh] w-full"
             onClick={e => e.stopPropagation()}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={lightbox.item.src}
               alt={lightbox.item.label}
-              className="w-full h-auto object-contain rounded-xl max-h-[82vh]"
+              width={1600}
+              height={1200}
+              sizes="100vw"
+              priority
+              style={{ width: "100%", height: "auto", maxHeight: "82vh", objectFit: "contain" }}
+              className="rounded-xl"
             />
             <div className="absolute bottom-0 left-0 right-0 px-5 py-4 bg-gradient-to-t from-black/70 to-transparent rounded-b-xl">
               <p className="text-white font-semibold" style={{ fontFamily: "var(--font-playfair)" }}>

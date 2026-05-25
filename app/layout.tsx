@@ -36,6 +36,18 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.leglamshotel.com"),
   alternates: {
     canonical: "https://www.leglamshotel.com",
+    languages: {
+      "fr": "https://www.leglamshotel.com",
+      "en": "https://www.leglamshotel.com",
+      "de": "https://www.leglamshotel.com",
+      "es": "https://www.leglamshotel.com",
+      "it": "https://www.leglamshotel.com",
+      "pt": "https://www.leglamshotel.com",
+      "zh": "https://www.leglamshotel.com",
+      "ar": "https://www.leglamshotel.com",
+      "he": "https://www.leglamshotel.com",
+      "x-default": "https://www.leglamshotel.com",
+    },
   },
   openGraph: {
     type: "website",
@@ -191,6 +203,21 @@ const jsonLd = {
   hasMap: "https://maps.google.com/?q=47+Rue+Beaunier+Paris+75014",
   currenciesAccepted: "EUR",
   paymentAccepted: "Cash, Credit Card",
+  potentialAction: {
+    "@type": "ReserveAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: "https://direct-book.com/properties/GlamshotelDirect",
+      actionPlatform: [
+        "https://schema.org/DesktopWebPlatform",
+        "https://schema.org/MobileWebPlatform",
+      ],
+    },
+    result: {
+      "@type": "LodgingReservation",
+      name: "Réservation Glam's Hôtel",
+    },
+  },
 };
 
 export default function RootLayout({
