@@ -1,26 +1,64 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-cream: #fdf8f5;
+  --color-blush: #f9ede8;
+  --color-rose: #e8bcc8;
+  --color-bordeaux: #a8365a;
+  --color-bordeaux-dark: #7a1e3e;
+  --color-text-dark: #2c1618;
+  --color-text-mid: #6b4d55;
+  --color-gold: #c9a84c;
+
+  --font-playfair: "Playfair Display", Georgia, serif;
+  --font-lato: "Lato", system-ui, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-cream);
+  color: var(--color-text-dark);
+  font-family: var(--font-lato);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+@keyframes curtain-open {
+  from { clip-path: inset(0 0 0 100%); }
+  to   { clip-path: inset(0 0 0 0%); }
+}
+
+@keyframes ken-burns {
+  from { transform: scale(1.07); }
+  to   { transform: scale(1); }
+}
+
+@keyframes slide-up-in {
+  from { transform: translateY(28px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  from { transform: translateY(10px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Remove dark mode override */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #fdf8f5;
+    --foreground: #2c1618;
+  }
 }
