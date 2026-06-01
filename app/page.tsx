@@ -21,9 +21,9 @@ export default function Home() {
         <BookingReferrerBanner />
         <main>
           <Hero />
+          <Gallery />
           <About />
           <Rooms />
-          <Gallery />
           <Video />
           <Promotions />
           <Attractions />
