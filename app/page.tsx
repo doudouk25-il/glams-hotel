@@ -12,6 +12,7 @@ import Attractions from "@/components/Attractions";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import PromoPopup from "@/components/PromoPopup";
 
 export default function Home() {
   return (
@@ -31,6 +32,7 @@ export default function Home() {
         </main>
         <Footer />
         <WhatsAppButton />
+        <PromoPopup />
       </BookingProvider>
     </LanguageProvider>
   );
