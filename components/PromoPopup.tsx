@@ -176,7 +176,9 @@ export default function PromoPopup() {
             className="w-full h-full object-cover"
             style={{ minHeight: "400px" }}
             onEnded={() => setPlaying(false)}
-          />
+          >
+            <track kind="captions" />
+          </video>
         </div>
 
         {/* ── RIGHT — content ── */}

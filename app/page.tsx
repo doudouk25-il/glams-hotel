@@ -2,14 +2,14 @@ import { LanguageProvider } from "@/components/LanguageContext";
 import { BookingProvider } from "@/components/BookingContext";
 import dynamic from "next/dynamic";
 
-// Composants critiques (above the fold) — chargés immédiatement
+// Above the fold — chargement immédiat (critique pour LCP)
 import Navbar from "@/components/Navbar";
 import BookingReferrerBanner from "@/components/BookingReferrerBanner";
 import Hero from "@/components/Hero";
+import Gallery from "@/components/Gallery";
+import About from "@/components/About";
 
-// Composants sous le fold — chargés en lazy (économise ~111 Ko au démarrage)
-const About      = dynamic(() => import("@/components/About"));
-const Gallery    = dynamic(() => import("@/components/Gallery"));
+// Sous le fold — lazy load
 const Rooms      = dynamic(() => import("@/components/Rooms"));
 const Video      = dynamic(() => import("@/components/Video"));
 const Promotions = dynamic(() => import("@/components/Promotions"));

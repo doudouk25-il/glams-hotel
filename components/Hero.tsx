@@ -18,7 +18,9 @@ export default function Hero() {
         playsInline
         poster="https://webbox.imgix.net/images/rfnestsxnethraiw/7a775cb8-f2c9-4a83-abd2-0aa6f2bfd0a1.webp?auto=format,compress&w=1920&h=1080&fit=crop"
         className="absolute inset-0 w-full h-full object-cover hidden md:block"
-      />
+      >
+        <track kind="captions" />
+      </video>
       {/* Image statique mobile — chargement prioritaire, LCP optimisé */}
       <Image
         src="https://webbox.imgix.net/images/rfnestsxnethraiw/7a775cb8-f2c9-4a83-abd2-0aa6f2bfd0a1.webp?auto=format,compress&w=828&h=1200&fit=crop&q=80"
