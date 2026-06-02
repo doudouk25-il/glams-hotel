@@ -53,7 +53,9 @@ export default function Video() {
             preload="metadata"
             className="w-full aspect-video object-cover bg-text-dark"
             poster=""
-          />
+          >
+            <track kind="captions" srcLang="fr" label="Français" />
+          </video>
         </div>
 
         {/* Caption */}

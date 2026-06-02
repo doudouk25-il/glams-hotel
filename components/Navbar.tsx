@@ -144,7 +144,7 @@ export default function Navbar() {
 
         {/* Mobile hamburger */}
         <button
-          className={`lg:hidden p-2 ${scrolled ? "text-text-dark" : "text-white"}`}
+          className={`lg:hidden p-3 min-w-[44px] min-h-[44px] flex items-center justify-center ${scrolled ? "text-text-dark" : "text-white"}`}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Menu"
         >

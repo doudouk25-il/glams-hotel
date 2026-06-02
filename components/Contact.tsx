@@ -112,10 +112,11 @@ export default function Contact() {
           {/* Form */}
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div>
-              <label className="block text-xs font-semibold text-bordeaux uppercase tracking-wider mb-1.5">
+              <label htmlFor="contact-name" className="block text-xs font-semibold text-bordeaux uppercase tracking-wider mb-1.5">
                 {t.contact.name}
               </label>
               <input
+                id="contact-name"
                 type="text"
                 required
                 value={form.name}
@@ -124,10 +125,11 @@ export default function Contact() {
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-bordeaux uppercase tracking-wider mb-1.5">
+              <label htmlFor="contact-email" className="block text-xs font-semibold text-bordeaux uppercase tracking-wider mb-1.5">
                 {t.contact.emailLabel}
               </label>
               <input
+                id="contact-email"
                 type="email"
                 required
                 value={form.email}
@@ -136,10 +138,11 @@ export default function Contact() {
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-bordeaux uppercase tracking-wider mb-1.5">
+              <label htmlFor="contact-message" className="block text-xs font-semibold text-bordeaux uppercase tracking-wider mb-1.5">
                 {t.contact.message}
               </label>
               <textarea
+                id="contact-message"
                 required
                 rows={5}
                 value={form.message}
@@ -149,7 +152,7 @@ export default function Contact() {
             </div>
             <button
               type="submit"
-              className="bg-bordeaux hover:bg-bordeaux-dark text-white font-semibold py-3.5 rounded-xl transition-colors text-sm"
+              className="bg-bordeaux hover:bg-bordeaux-dark text-white font-semibold py-4 rounded-xl transition-colors text-sm min-h-[48px]"
             >
               {sent ? "✓ Message envoyé" : t.contact.send}
             </button>
