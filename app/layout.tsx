@@ -231,6 +231,11 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <head>
+        {/* Preconnect — réduit le render-blocking */}
+        <link rel="preconnect" href="https://webbox.imgix.net" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://direct-book.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebsite) }}

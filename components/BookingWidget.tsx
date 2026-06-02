@@ -34,10 +34,11 @@ export default function BookingWidget() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4 [&_input]:min-w-0 [&_select]:min-w-0">
         {/* Check-in */}
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-semibold text-bordeaux uppercase tracking-wider">
+          <label htmlFor="checkin-date" className="text-xs font-semibold text-bordeaux uppercase tracking-wider">
             {t.hero.checkIn}
           </label>
           <input
+            id="checkin-date"
             type="date"
             value={checkIn}
             min={today()}
@@ -55,10 +56,11 @@ export default function BookingWidget() {
 
         {/* Check-out */}
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-semibold text-bordeaux uppercase tracking-wider">
+          <label htmlFor="checkout-date" className="text-xs font-semibold text-bordeaux uppercase tracking-wider">
             {t.hero.checkOut}
           </label>
           <input
+            id="checkout-date"
             type="date"
             value={checkOut}
             min={checkIn}
@@ -69,10 +71,11 @@ export default function BookingWidget() {
 
         {/* Adults */}
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-semibold text-bordeaux uppercase tracking-wider">
+          <label htmlFor="adults-count" className="text-xs font-semibold text-bordeaux uppercase tracking-wider">
             {t.hero.adults}
           </label>
           <select
+            id="adults-count"
             value={adults}
             onChange={(e) => setAdults(Number(e.target.value))}
             className="border border-rose/40 rounded-lg px-3 py-2.5 text-sm text-text-dark focus:outline-none focus:border-bordeaux transition-colors bg-white"
@@ -85,10 +88,11 @@ export default function BookingWidget() {
 
         {/* Children */}
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-semibold text-bordeaux uppercase tracking-wider">
+          <label htmlFor="children-count" className="text-xs font-semibold text-bordeaux uppercase tracking-wider">
             {t.hero.children}
           </label>
           <select
+            id="children-count"
             value={children}
             onChange={(e) => setChildren(Number(e.target.value))}
             className="border border-rose/40 rounded-lg px-3 py-2.5 text-sm text-text-dark focus:outline-none focus:border-bordeaux transition-colors bg-white"

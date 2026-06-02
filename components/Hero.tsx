@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLanguage } from "./LanguageContext";
 import BookingWidget from "./BookingWidget";
 
@@ -8,7 +9,7 @@ export default function Hero() {
 
   return (
     <section id="accueil" className="relative min-h-screen flex flex-col">
-      {/* Background video */}
+      {/* Background video — desktop uniquement (évite 17MB sur mobile) */}
       <video
         src="/Video/Logo IA.mp4"
         autoPlay
@@ -16,7 +17,17 @@ export default function Hero() {
         loop
         playsInline
         poster="https://webbox.imgix.net/images/rfnestsxnethraiw/7a775cb8-f2c9-4a83-abd2-0aa6f2bfd0a1.webp?auto=format,compress&w=1920&h=1080&fit=crop"
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover hidden md:block"
+      />
+      {/* Image statique mobile — chargement prioritaire, LCP optimisé */}
+      <Image
+        src="https://webbox.imgix.net/images/rfnestsxnethraiw/7a775cb8-f2c9-4a83-abd2-0aa6f2bfd0a1.webp?auto=format,compress&w=828&h=1200&fit=crop&q=80"
+        alt="Glam's Hôtel Paris — Hôtel boutique 3 étoiles"
+        fill
+        priority
+        fetchPriority="high"
+        sizes="100vw"
+        className="object-cover md:hidden"
       />
 
       {/* Gradient overlay */}
