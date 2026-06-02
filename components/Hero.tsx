@@ -1,36 +1,49 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { useLanguage } from "./LanguageContext";
 import BookingWidget from "./BookingWidget";
 
 export default function Hero() {
   const { t } = useLanguage();
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    // Détecte desktop une seule fois au montage
+    setIsDesktop(window.innerWidth >= 768);
+  }, []);
 
   return (
     <section id="accueil" className="relative min-h-screen flex flex-col">
-      {/* Background video — desktop uniquement (évite 17MB sur mobile) */}
-      <video
-        src="/Video/Logo IA.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-        poster="https://webbox.imgix.net/images/rfnestsxnethraiw/7a775cb8-f2c9-4a83-abd2-0aa6f2bfd0a1.webp?auto=format,compress&w=1920&h=1080&fit=crop"
-        className="absolute inset-0 w-full h-full object-cover hidden md:block"
-      >
-        <track kind="captions" />
-      </video>
-      {/* Image statique mobile — chargement prioritaire, LCP optimisé */}
-      <Image
-        src="https://webbox.imgix.net/images/rfnestsxnethraiw/7a775cb8-f2c9-4a83-abd2-0aa6f2bfd0a1.webp?auto=format,compress&w=828&h=1200&fit=crop&q=80"
-        alt="Glam's Hôtel Paris — Hôtel boutique 3 étoiles"
-        fill
-        priority
-        fetchPriority="high"
-        sizes="100vw"
-        className="object-cover md:hidden"
-      />
+
+      {/* Vidéo — rendue UNIQUEMENT sur desktop, jamais téléchargée sur mobile */}
+      {isDesktop && (
+        <video
+          src="/Video/Logo IA.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="https://webbox.imgix.net/images/rfnestsxnethraiw/7a775cb8-f2c9-4a83-abd2-0aa6f2bfd0a1.webp?auto=format,compress&w=1920&h=1080&fit=crop"
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <track kind="captions" />
+        </video>
+      )}
+
+      {/* Image statique — mobile uniquement, priorité maximale pour LCP */}
+      {!isDesktop && (
+        <Image
+          src="https://webbox.imgix.net/images/rfnestsxnethraiw/7a775cb8-f2c9-4a83-abd2-0aa6f2bfd0a1.webp?auto=format,compress&w=828&h=1200&fit=crop&q=80"
+          alt="Glam's Hôtel Paris — Hôtel boutique 3 étoiles"
+          fill
+          priority
+          fetchPriority="high"
+          sizes="100vw"
+          className="object-cover"
+        />
+      )}
 
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-black/75" />
