@@ -48,6 +48,7 @@ export default function Footer() {
               </a>
             </div>
             <div className="flex flex-col sm:flex-row items-center md:items-end gap-x-4 gap-y-1">
+              <a href="/cgv" className="hover:text-white transition-colors">CGV</a>
               <a href="#" className="hover:text-white transition-colors">{t.footer.legal}</a>
               <a href="#" className="hover:text-white transition-colors">{t.footer.privacy}</a>
             </div>
