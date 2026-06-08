@@ -237,7 +237,7 @@ export default function CGVPage() {
       {/* Navbar placeholder space */}
       <div className="h-16" />
 
-      <main className="bg-cream min-h-screen">
+      <main id="top" className="bg-cream min-h-screen">
         {/* Header */}
         <div className="bg-bordeaux py-14">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -318,8 +318,7 @@ export default function CGVPage() {
             </Link>
             <span className="text-rose/30 hidden sm:block">·</span>
             <a
-              href="#"
-              onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+              href="#top"
               className="text-sm text-text-mid hover:text-bordeaux transition-colors"
             >
               Haut de page ↑
