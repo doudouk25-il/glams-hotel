@@ -19,8 +19,14 @@ const LanguageContext = createContext<LanguageContextType>({
   isRTL: false,
 });
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocale] = useState<Locale>("fr");
+export function LanguageProvider({
+  children,
+  defaultLocale = "fr",
+}: {
+  children: React.ReactNode;
+  defaultLocale?: Locale;
+}) {
+  const [locale, setLocale] = useState<Locale>(defaultLocale);
 
   useEffect(() => {
     const dir = RTL_LOCALES.includes(locale) ? "rtl" : "ltr";

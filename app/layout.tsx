@@ -240,6 +240,11 @@ export default function RootLayout({
     >
       <head>
         {/* Preconnect — réduit le render-blocking */}
+        {/* Hreflang — signaux de langue pour Google */}
+        <link rel="alternate" hrefLang="fr" href="https://www.leglamshotel.com/" />
+        <link rel="alternate" hrefLang="en" href="https://www.leglamshotel.com/en" />
+        <link rel="alternate" hrefLang="x-default" href="https://www.leglamshotel.com/" />
+
         <link rel="preconnect" href="https://webbox.imgix.net" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
