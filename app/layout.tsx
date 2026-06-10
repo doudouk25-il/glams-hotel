@@ -37,18 +37,6 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.leglamshotel.com"),
   alternates: {
     canonical: "https://www.leglamshotel.com",
-    languages: {
-      "fr": "https://www.leglamshotel.com",
-      "en": "https://www.leglamshotel.com",
-      "de": "https://www.leglamshotel.com",
-      "es": "https://www.leglamshotel.com",
-      "it": "https://www.leglamshotel.com",
-      "pt": "https://www.leglamshotel.com",
-      "zh": "https://www.leglamshotel.com",
-      "ar": "https://www.leglamshotel.com",
-      "he": "https://www.leglamshotel.com",
-      "x-default": "https://www.leglamshotel.com",
-    },
   },
   openGraph: {
     type: "website",
