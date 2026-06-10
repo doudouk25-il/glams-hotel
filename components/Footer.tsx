@@ -40,11 +40,11 @@ export default function Footer() {
           {/* Links */}
           <div className="flex flex-col items-center md:items-end gap-2 text-xs w-full md:w-auto">
             <div className="flex flex-wrap justify-center md:justify-end gap-4">
+              <a href="/chambres" className="hover:text-white transition-colors">Chambres</a>
+              <a href="/quartier" className="hover:text-white transition-colors">Le Quartier</a>
+              <a href="/petit-dejeuner" className="hover:text-white transition-colors">Petit-déjeuner</a>
               <a href="https://wa.me/33145409353" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
                 WhatsApp
-              </a>
-              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                Instagram
               </a>
             </div>
             <div className="flex flex-col sm:flex-row items-center md:items-end gap-x-4 gap-y-1">
