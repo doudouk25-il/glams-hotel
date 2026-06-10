@@ -24,8 +24,7 @@ const nextConfig: NextConfig = {
       { source: "/zh",                  destination: "/", permanent: true },
       { source: "/no/index.html",       destination: "/", permanent: true },
       { source: "/no",                  destination: "/", permanent: true },
-      { source: "/en/index.html",       destination: "/", permanent: true },
-      { source: "/en",                  destination: "/", permanent: true },
+      { source: "/en/index.html",       destination: "/en", permanent: true },
 
       // ── Anciennes pages de chambres ──────────────────────────────
       { source: "/rooms",               destination: "/#chambres", permanent: true },
