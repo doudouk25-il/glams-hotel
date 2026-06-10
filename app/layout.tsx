@@ -169,6 +169,14 @@ const jsonLd = {
   telephone: "+33145409353",
   email: "reception@leglamshotel.com",
   starRating: { "@type": "Rating", ratingValue: "3" },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "8.4",
+    bestRating: "10",
+    worstRating: "1",
+    ratingCount: 312,
+    reviewCount: 312,
+  },
   priceRange: "€€",
   address: {
     "@type": "PostalAddress",

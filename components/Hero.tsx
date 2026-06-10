@@ -57,10 +57,15 @@ export default function Hero() {
           {t.hero.tagline}
         </p>
         <h1
-          className="text-white text-4xl sm:text-5xl lg:text-7xl font-bold mb-4 leading-tight"
+          className="text-white font-bold mb-4 leading-tight"
           style={{ fontFamily: "var(--font-playfair)" }}
         >
-          {t.hero.title}
+          <span className="block text-4xl sm:text-5xl lg:text-7xl">Glam&apos;s Hôtel</span>
+          {t.hero.title.includes(" — ") && (
+            <span className="block text-base sm:text-lg lg:text-xl font-normal tracking-wide text-white/80 mt-2">
+              {t.hero.title.split(" — ")[1]}
+            </span>
+          )}
         </h1>
         <p className="text-white/80 text-lg sm:text-xl max-w-2xl mb-10 leading-relaxed">
           {t.hero.subtitle}

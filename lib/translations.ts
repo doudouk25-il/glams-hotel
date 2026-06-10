@@ -13,7 +13,7 @@ export const translations = {
     },
     hero: {
       tagline: "Glamour · Élégance · Raffinement",
-      title: "Glam's Hôtel",
+      title: "Glam's Hôtel — Hôtel boutique 3 étoiles, Paris 14e",
       subtitle: "Votre havre de charme au cœur du 14e arrondissement de Paris",
       checkIn: "Arrivée",
       checkOut: "Départ",
@@ -119,7 +119,7 @@ export const translations = {
     },
     hero: {
       tagline: "Glamour · Elegance · Refinement",
-      title: "Glam's Hôtel",
+      title: "Glam's Hôtel — Boutique Hotel 3 Stars, Paris 14th",
       subtitle: "Your charming retreat in the heart of Paris 14th arrondissement",
       checkIn: "Check-in",
       checkOut: "Check-out",
