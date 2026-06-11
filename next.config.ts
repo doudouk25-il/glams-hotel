@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    // imgix already optimizes images server-side — bypass Vercel's image proxy
+    // to avoid double-serving and unnecessary Fast Data Transfer costs.
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
