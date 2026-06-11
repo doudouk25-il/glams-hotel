@@ -231,6 +231,8 @@ export default function RootLayout({
         {/* Hreflang — signaux de langue pour Google */}
         <link rel="alternate" hrefLang="fr" href="https://www.leglamshotel.com/" />
         <link rel="alternate" hrefLang="en" href="https://www.leglamshotel.com/en" />
+        <link rel="alternate" hrefLang="es" href="https://www.leglamshotel.com/es" />
+        <link rel="alternate" hrefLang="de" href="https://www.leglamshotel.com/de" />
         <link rel="alternate" hrefLang="x-default" href="https://www.leglamshotel.com/" />
 
         <link rel="preconnect" href="https://webbox.imgix.net" />

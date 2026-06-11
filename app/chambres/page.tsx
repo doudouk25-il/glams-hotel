@@ -122,13 +122,16 @@ export default function ChambresPage() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <p className="text-white/60 text-xs tracking-[0.3em] uppercase mb-4">Glam&apos;s Hôtel Paris</p>
             <h1
-              className="text-4xl sm:text-5xl font-bold text-white mb-4"
+              className="text-4xl sm:text-5xl font-bold text-white mb-4 leading-tight"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
-              Nos Chambres
+              <span className="block">Chambres Boutique</span>
+              <span className="block text-lg sm:text-xl font-normal tracking-wide text-white/80 mt-2">
+                Glam&apos;s Hôtel — 9 chambres décorées avec art, Paris 14e
+              </span>
             </h1>
             <p className="text-white/80 text-lg max-w-2xl mx-auto">
-              9 univers uniques — chaque chambre est une œuvre d&apos;art décorée avec passion
+              Chaque chambre est un univers unique — choisissez votre décor de rêve
             </p>
             <div className="flex flex-wrap justify-center gap-6 mt-8 text-white/70 text-sm">
               <span className="flex items-center gap-2">
@@ -144,6 +147,41 @@ export default function ChambresPage() {
                 Paris 14e arrondissement
               </span>
             </div>
+          </div>
+        </div>
+
+        {/* Intro narrative */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
+          <p className="text-bordeaux text-xs font-semibold tracking-[0.25em] uppercase mb-4">Notre philosophie</p>
+          <h2
+            className="text-3xl sm:text-4xl font-bold text-text-dark mb-6"
+            style={{ fontFamily: "var(--font-playfair)" }}
+          >
+            Chaque chambre, une œuvre d&apos;art
+          </h2>
+          <div className="space-y-4 text-text-mid text-base leading-relaxed max-w-3xl mx-auto">
+            <p>
+              Chez Glam&apos;s Hôtel, nous avons fait le choix de l&apos;exception : <strong className="text-text-dark">27 chambres dont aucune ne se ressemble</strong>. Chacune est le fruit d&apos;une vision artistique singulière, d&apos;un parti pris décoratif affirmé — une invitation à habiter une histoire plutôt qu&apos;à occuper une chambre.
+            </p>
+            <p>
+              Fresques peintes à la main, mobilier chiné, textiles sélectionnés — chaque détail a été pensé pour créer une atmosphère cohérente et mémorable. Que vous choisissiez la sensualité de <strong className="text-text-dark">L&apos;Effeuilleuse</strong>, la royauté de <strong className="text-text-dark">Marie Antoinette</strong> ou la vue sur le jardin de la <strong className="text-text-dark">Chambre avec Terrasse</strong>, vous vivrez une expérience unique dans le Paris le plus authentique.
+            </p>
+            <p>
+              Toutes nos chambres sont climatisées, équipées du WiFi haut débit, d&apos;une salle de bain privée et d&apos;une télévision. Le petit-déjeuner est servi chaque matin dans notre jardin privé. <strong className="text-text-dark">Réservez en direct et économisez 7%</strong> par rapport aux plateformes de réservation.
+            </p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-8 mt-8 text-sm">
+            {[
+              { n: "27", label: "chambres" },
+              { n: "3★", label: "hôtel boutique" },
+              { n: "9", label: "univers artistiques" },
+              { n: "−7%", label: "réservation directe" },
+            ].map((item) => (
+              <div key={item.label} className="text-center">
+                <p className="text-3xl font-bold text-bordeaux" style={{ fontFamily: "var(--font-playfair)" }}>{item.n}</p>
+                <p className="text-text-mid text-xs mt-1 uppercase tracking-wider">{item.label}</p>
+              </div>
+            ))}
           </div>
         </div>
 

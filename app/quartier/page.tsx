@@ -96,18 +96,56 @@ export default function QuartierPage() {
           <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p className="text-white/60 text-xs tracking-[0.3em] uppercase mb-4">Glam&apos;s Hôtel Paris</p>
             <h1
-              className="text-4xl sm:text-5xl font-bold text-white mb-4"
+              className="text-4xl sm:text-5xl font-bold text-white mb-4 leading-tight"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
-              Le Quartier
+              <span className="block">Paris 14e Arrondissement</span>
+              <span className="block text-lg sm:text-xl font-normal tracking-wide text-white/80 mt-2">
+                Hôtel Denfert-Rochereau · Mouton-Duvernet · Montparnasse
+              </span>
             </h1>
             <p className="text-white/80 text-lg max-w-2xl mx-auto">
-              Idéalement situé dans le 14e arrondissement — à 3 minutes du métro, au calme, au cœur de Paris
+              À 3 minutes du métro, au calme, au cœur d&apos;un des arrondissements les plus authentiques de Paris
             </p>
           </div>
         </div>
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-14">
+
+          {/* Pourquoi le 14e */}
+          <section className="text-center max-w-3xl mx-auto">
+            <p className="text-bordeaux text-xs font-semibold tracking-[0.25em] uppercase mb-4">Le choix du 14e</p>
+            <h2
+              className="text-3xl sm:text-4xl font-bold text-text-dark mb-6"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              Pourquoi séjourner dans le 14e arrondissement ?
+            </h2>
+            <div className="space-y-4 text-text-mid text-base leading-relaxed text-left">
+              <p>
+                Le 14e arrondissement est l&apos;un des secrets les mieux gardés de Paris : <strong className="text-text-dark">résidentiel, calme, authentique</strong>, il offre le quotidien parisien loin de l&apos;agitation touristique. Pas de foules devant votre hôtel, pas de bruit nocturne — juste Paris qui vit.
+              </p>
+              <p>
+                Pourtant, la centralité est totale. La <strong className="text-text-dark">station Mouton-Duvernet (ligne 4)</strong> à 3 minutes à pied vous connecte à Montparnasse en 4 minutes, à Saint-Germain-des-Prés en 10 minutes, au Louvre en 18 minutes. Le <strong className="text-text-dark">RER B à Denfert-Rochereau</strong> (10 min à pied) vous dépose à CDG en 30 minutes sans correspondance.
+              </p>
+              <p>
+                Le quartier recèle aussi quelques-uns des attraits les plus emblématiques de Paris : les <strong className="text-text-dark">Catacombes</strong> à 7 minutes à pied, la <strong className="text-text-dark">Fondation Cartier pour l&apos;art contemporain</strong>, le <strong className="text-text-dark">Parc Montsouris</strong> — un des plus grands espaces verts intra-muros — et la vivante <strong className="text-text-dark">Rue Daguerre</strong>, marché de quartier à ciel ouvert.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8">
+              {[
+                { n: "3 min", label: "Mouton-Duvernet (L4)" },
+                { n: "10 min", label: "Denfert RER B" },
+                { n: "30 min", label: "CDG sans correspondance" },
+                { n: "7 min", label: "Catacombes de Paris" },
+              ].map((item) => (
+                <div key={item.label} className="bg-white rounded-2xl border border-rose/20 p-4 text-center shadow-sm">
+                  <p className="text-2xl font-bold text-bordeaux" style={{ fontFamily: "var(--font-playfair)" }}>{item.n}</p>
+                  <p className="text-text-mid text-xs mt-1 leading-snug">{item.label}</p>
+                </div>
+              ))}
+            </div>
+          </section>
 
           {/* Localisation intro */}
           <section className="grid lg:grid-cols-2 gap-10 items-center">
@@ -189,6 +227,41 @@ export default function QuartierPage() {
                         <p className="text-text-mid text-xs leading-relaxed">{item.desc}</p>
                       </div>
                     ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Rue Daguerre & bonnes adresses */}
+          <section>
+            <p className="text-bordeaux text-xs font-semibold tracking-[0.25em] uppercase mb-3">Gastronomie de quartier</p>
+            <h2
+              className="text-3xl font-bold text-text-dark mb-4"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              La Rue Daguerre & les bonnes adresses
+            </h2>
+            <p className="text-text-mid text-sm leading-relaxed mb-8 max-w-2xl">
+              À 5 minutes à pied de l&apos;hôtel, la <strong className="text-text-dark">Rue Daguerre</strong> est l&apos;une des rues piétonnes les plus animées du 14e. Fromageries, boulangeries artisanales, épiceries fines, bistrots — c&apos;est ici que les habitants du quartier font leurs courses et déjeunent en terrasse.
+            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {[
+                { icon: "🥐", name: "Boulangerie Mauvieux", type: "Boulangerie-pâtisserie", addr: "Rue Daguerre", desc: "Pain de tradition, croissants et tartes maison — la boulangerie de quartier par excellence." },
+                { icon: "🧀", name: "Fromagerie Daguerre", type: "Fromagerie", addr: "Rue Daguerre", desc: "Sélection affinée de fromages français, conseils personnalisés." },
+                { icon: "🍷", name: "Le Bistrot du Dôme", type: "Restaurant", addr: "Rue Delambre", desc: "Spécialités de la mer dans une adresse incontournable du 14e." },
+                { icon: "☕", name: "Café de la Place", type: "Café-restaurant", addr: "Place Ferdinand Brunot", desc: "Terrasse ensoleillée, brunch le week-end, ambiance village parisien." },
+                { icon: "🥩", name: "Marché Daguerre", type: "Marché en plein air", addr: "Rue Daguerre", desc: "Mercredi et samedi matin — producteurs locaux, fleurs, fromages, charcuteries." },
+                { icon: "🍸", name: "La Coupole", type: "Brasserie historique", addr: "Boulevard du Montparnasse", desc: "Institution parisienne depuis 1927 — décor Art Déco classé, plats de brasserie, ambiance unique." },
+              ].map((item) => (
+                <div key={item.name} className="bg-white rounded-xl border border-rose/20 p-4 shadow-sm">
+                  <div className="flex items-start gap-3">
+                    <span className="text-2xl flex-shrink-0">{item.icon}</span>
+                    <div>
+                      <h3 className="font-semibold text-text-dark text-sm">{item.name}</h3>
+                      <p className="text-bordeaux text-xs font-medium">{item.type} · {item.addr}</p>
+                      <p className="text-text-mid text-xs leading-relaxed mt-1">{item.desc}</p>
+                    </div>
                   </div>
                 </div>
               ))}

@@ -61,10 +61,13 @@ export default function PetitDejeunerPage() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <p className="text-white/60 text-xs tracking-[0.3em] uppercase mb-4">Glam&apos;s Hôtel Paris</p>
             <h1
-              className="text-4xl sm:text-5xl font-bold text-white mb-4"
+              className="text-4xl sm:text-5xl font-bold text-white mb-4 leading-tight"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
-              Petit-déjeuner & Jardin
+              <span className="block">Petit-déjeuner & Jardin</span>
+              <span className="block text-lg sm:text-xl font-normal tracking-wide text-white/80 mt-2">
+                Glam&apos;s Hôtel Paris 14e — servi chaque matin de 7h30 à 10h30
+              </span>
             </h1>
             <p className="text-white/80 text-lg max-w-2xl mx-auto">
               Commencez votre journée parisienne dans notre jardin privé — un moment suspendu, loin du bruit de la ville

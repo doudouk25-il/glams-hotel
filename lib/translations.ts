@@ -223,7 +223,7 @@ export const translations = {
     },
     hero: {
       tagline: "Glamour · Elegancia · Refinamiento",
-      title: "Glam's Hôtel",
+      title: "Glam's Hôtel — Hotel Boutique 3 Estrellas, París 14",
       subtitle: "Su refugio encantador en el corazón del 14.º distrito de París",
       checkIn: "Llegada",
       checkOut: "Salida",
@@ -327,7 +327,7 @@ export const translations = {
     },
     hero: {
       tagline: "Glamour · Eleganz · Raffinesse",
-      title: "Glam's Hôtel",
+      title: "Glam's Hôtel — Boutique-Hotel 3 Sterne, Paris 14",
       subtitle: "Ihr charmantes Refugium im Herzen des 14. Arrondissements von Paris",
       checkIn: "Anreise",
       checkOut: "Abreise",
