@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { breadcrumb } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Conditions Générales de Vente — Glam's Hôtel Paris",
   description:
     "Consultez les Conditions Générales de Vente de Glam's Hôtel Paris : modalités de réservation, annulation, paiement, séjour et données personnelles.",
   robots: { index: true, follow: true },
+  alternates: {
+    canonical: "https://www.leglamshotel.com/cgv",
+    languages: {
+      "fr":        "https://www.leglamshotel.com/cgv",
+      "x-default": "https://www.leglamshotel.com/cgv",
+    },
+  },
 };
 
 const sections = [
@@ -234,6 +242,10 @@ function renderContent(text: string) {
 export default function CGVPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb([{ name: "CGV", url: "https://www.leglamshotel.com/cgv" }])) }}
+      />
       {/* Navbar placeholder space */}
       <div className="h-16" />
 

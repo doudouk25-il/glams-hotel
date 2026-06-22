@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { breadcrumb } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Petit-déjeuner & Jardin — Glam's Hôtel Paris 14e",
@@ -13,7 +14,13 @@ export const metadata: Metadata = {
     "breakfast garden hotel Paris",
     "hôtel terrasse Paris 14e",
   ],
-  alternates: { canonical: "https://www.leglamshotel.com/petit-dejeuner" },
+  alternates: {
+    canonical: "https://www.leglamshotel.com/petit-dejeuner",
+    languages: {
+      "fr":        "https://www.leglamshotel.com/petit-dejeuner",
+      "x-default": "https://www.leglamshotel.com/petit-dejeuner",
+    },
+  },
 };
 
 const jsonLd = {
@@ -50,6 +57,10 @@ export default function PetitDejeunerPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb([{ name: "Petit-déjeuner & Jardin", url: "https://www.leglamshotel.com/petit-dejeuner" }])) }}
       />
 
       <div className="h-16" />

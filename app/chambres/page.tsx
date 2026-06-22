@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { ROOMS, img } from "@/lib/data";
+import { breadcrumb } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Chambres — Glam's Hôtel Paris 14e | 9 Chambres Décorées avec Art",
@@ -16,7 +17,13 @@ export const metadata: Metadata = {
     "chambre Paris insolite",
     "hotel room paris 14th",
   ],
-  alternates: { canonical: "https://www.leglamshotel.com/chambres" },
+  alternates: {
+    canonical: "https://www.leglamshotel.com/chambres",
+    languages: {
+      "fr":        "https://www.leglamshotel.com/chambres",
+      "x-default": "https://www.leglamshotel.com/chambres",
+    },
+  },
 };
 
 const BASE = "https://webbox.imgix.net/images/rfnestsxnethraiw/";
@@ -112,6 +119,10 @@ export default function ChambresPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb([{ name: "Chambres", url: "https://www.leglamshotel.com/chambres" }])) }}
       />
 
       <div className="h-16" />
