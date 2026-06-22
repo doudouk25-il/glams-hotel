@@ -47,32 +47,65 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
-      // ── Ancienne page d'accueil ──────────────────────────────────
-      { source: "/index.html",          destination: "/", permanent: true },
-      { source: "/home",                destination: "/", permanent: true },
+      // ── Apex → www (308 permanent, règle le problème de 307) ─────
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "leglamshotel.com" }],
+        destination: "https://www.leglamshotel.com/:path*",
+        permanent: true,
+      },
 
-      // ── Anciennes versions par langue ───────────────────────────
-      { source: "/fr/index.html",       destination: "/", permanent: true },
-      { source: "/fr",                  destination: "/", permanent: true },
-      { source: "/zh/index.html",       destination: "/", permanent: true },
-      { source: "/zh",                  destination: "/", permanent: true },
-      { source: "/no/index.html",       destination: "/", permanent: true },
-      { source: "/no",                  destination: "/", permanent: true },
-      { source: "/en/index.html",       destination: "/en", permanent: true },
+      // ── Accueil ──────────────────────────────────────────────────
+      { source: "/index.html",           destination: "/",   permanent: true },
+      { source: "/fr/index.html",        destination: "/",   permanent: true },
+      { source: "/home",                 destination: "/",   permanent: true },
+      { source: "/fr",                   destination: "/",   permanent: true },
+      { source: "/zh/index.html",        destination: "/",   permanent: true },
+      { source: "/zh",                   destination: "/",   permanent: true },
+      { source: "/no/index.html",        destination: "/",   permanent: true },
+      { source: "/no",                   destination: "/",   permanent: true },
+      { source: "/en/index.html",        destination: "/en", permanent: true },
 
-      // ── Anciennes pages de chambres ──────────────────────────────
-      { source: "/rooms",               destination: "/#chambres", permanent: true },
-      { source: "/rooms/:slug",         destination: "/#chambres", permanent: true },
-      { source: "/fr/rooms/:slug",      destination: "/#chambres", permanent: true },
+      // ── Chambres ─────────────────────────────────────────────────
+      { source: "/fr/rooms.html",        destination: "/chambres", permanent: true },
+      { source: "/rooms.html",           destination: "/chambres", permanent: true },
+      { source: "/rooms",                destination: "/chambres", permanent: true },
+      { source: "/fr/rooms/:slug*",      destination: "/chambres", permanent: true },
+      { source: "/rooms/:slug*",         destination: "/chambres", permanent: true },
 
-      // ── Autres anciennes pages ───────────────────────────────────
-      { source: "/contact-us.html",     destination: "/#contact",  permanent: true },
-      { source: "/contact",             destination: "/#contact",  permanent: true },
-      { source: "/videos.html",         destination: "/",          permanent: true },
-      { source: "/gallery",             destination: "/#galerie",  permanent: true },
+      // ── Quartier ─────────────────────────────────────────────────
+      { source: "/fr/attractions.html",  destination: "/quartier", permanent: true },
 
-      // ── Variables non résolues (ancienne version) ────────────────
-      { source: "/$DIRECTIONS_URL$",    destination: "https://maps.google.com/?q=47+Rue+Beaunier+Paris+75014", permanent: true },
+      // ── Promotions ───────────────────────────────────────────────
+      { source: "/promotions.html",      destination: "/", permanent: true },
+      { source: "/fr/promotions.html",   destination: "/", permanent: true },
+      { source: "/promotions/:slug*",    destination: "/", permanent: true },
+      { source: "/fr/promotions/:slug*", destination: "/", permanent: true },
+
+      // ── Galerie ──────────────────────────────────────────────────
+      { source: "/gallery.html",         destination: "/", permanent: true },
+      { source: "/fr/gallery.html",      destination: "/", permanent: true },
+      { source: "/gallery",              destination: "/#galerie", permanent: true },
+
+      // ── À propos ─────────────────────────────────────────────────
+      { source: "/about-us.html",        destination: "/", permanent: true },
+      { source: "/fr/about-us.html",     destination: "/", permanent: true },
+
+      // ── Contact ──────────────────────────────────────────────────
+      { source: "/contact-us.html",      destination: "/cgv", permanent: true },
+      { source: "/fr/contact-us.html",   destination: "/cgv", permanent: true },
+      { source: "/contact",              destination: "/#contact", permanent: true },
+
+      // ── CGV ──────────────────────────────────────────────────────
+      { source: "/terms-and-conditions.html",    destination: "/cgv", permanent: true },
+      { source: "/fr/terms-and-conditions.html", destination: "/cgv", permanent: true },
+
+      // ── Vidéos ───────────────────────────────────────────────────
+      { source: "/videos.html",          destination: "/", permanent: true },
+      { source: "/fr/videos.html",       destination: "/", permanent: true },
+
+      // ── Variables non résolues (ancienne version) ─────────────────
+      { source: "/$DIRECTIONS_URL$",     destination: "https://maps.google.com/?q=47+Rue+Beaunier+Paris+75014", permanent: true },
     ];
   },
 };
