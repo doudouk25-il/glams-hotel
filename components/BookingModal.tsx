@@ -150,7 +150,8 @@ export default function BookingModal({ url, onClose }: BookingModalProps) {
             </div>
           )}
 
-          {/* iframe — affiché directement, CSP de SiteMinder autorise leglamshotel.com */}
+          {/* iframe — sandbox bloque le breakout automatique (window.top.location)
+              tout en autorisant les redirections paiement initiées par l'utilisateur */}
           <iframe
             ref={iframeRef}
             src={url}
@@ -158,6 +159,7 @@ export default function BookingModal({ url, onClose }: BookingModalProps) {
             title="Réservation Glam's Hôtel"
             allow="payment"
             loading="eager"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation-by-user-activation allow-modals"
             onLoad={() => setLoading(false)}
             onError={() => setFailed(true)}
           />
