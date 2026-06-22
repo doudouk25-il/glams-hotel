@@ -9,8 +9,8 @@ interface BookingModalProps {
 
 export default function BookingModal({ url, onClose }: BookingModalProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [iframeBlocked, setIframeBlocked] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -19,44 +19,17 @@ export default function BookingModal({ url, onClose }: BookingModalProps) {
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
 
-    // Detect if iframe is blocked: after 4s, check if it has content
+    // Fallback si l'iframe ne charge pas du tout après 8s
     const timeout = setTimeout(() => {
-      const iframe = iframeRef.current;
-      if (!iframe) return;
-      try {
-        // Cross-origin access throws → iframe loaded (but cross-origin)
-        const doc = iframe.contentDocument;
-        // If we reach here with null doc, likely blocked
-        if (!doc) setIframeBlocked(true);
-        setLoading(false);
-      } catch {
-        // Cross-origin error = iframe loaded successfully (different domain)
-        setLoading(false);
-      }
-    }, 4000);
+      if (loading) setFailed(true);
+    }, 8000);
 
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
       clearTimeout(timeout);
     };
-  }, [onClose]);
-
-  const handleIframeLoad = () => {
-    // iframe fired load event
-    const iframe = iframeRef.current;
-    if (!iframe) return;
-    try {
-      const doc = iframe.contentDocument;
-      // Loaded but empty/about:blank = blocked by X-Frame-Options
-      if (!doc || doc.body?.innerHTML === "") {
-        setIframeBlocked(true);
-      }
-    } catch {
-      // Cross-origin = successfully loaded SiteMinder page
-    }
-    setLoading(false);
-  };
+  }, [onClose, loading]);
 
   const openDirectly = () => {
     window.open(url, "_blank", "noopener,noreferrer");
@@ -91,33 +64,43 @@ export default function BookingModal({ url, onClose }: BookingModalProps) {
               ✦ Réservez en direct et économisez 7%
             </span>
           </div>
-          <button
-            onClick={onClose}
-            className="text-white/80 hover:text-white transition-colors p-1 rounded-lg hover:bg-white/10"
-            aria-label="Fermer"
-          >
-            <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={openDirectly}
+              className="hidden sm:flex items-center gap-1.5 text-white/70 hover:text-white text-xs transition-colors px-3 py-1.5 rounded-lg hover:bg-white/10"
+              title="Ouvrir dans un nouvel onglet"
+            >
+              <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+              Nouvel onglet
+            </button>
+            <button
+              onClick={onClose}
+              className="text-white/80 hover:text-white transition-colors p-1 rounded-lg hover:bg-white/10"
+              aria-label="Fermer"
+            >
+              <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Body */}
         <div className="flex-1 relative overflow-hidden">
 
           {/* Loading spinner */}
-          {loading && !iframeBlocked && (
+          {loading && !failed && (
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-cream z-10 gap-4">
               <div className="w-10 h-10 border-4 border-rose border-t-bordeaux rounded-full animate-spin" />
               <p className="text-text-mid text-sm">Chargement du moteur de réservation…</p>
             </div>
           )}
 
-          {/* Blocked fallback — interstitiel de marque */}
-          {iframeBlocked && (
+          {/* Fallback si l'iframe échoue complètement */}
+          {failed && (
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-cream z-10 px-6 text-center gap-6">
-
-              {/* Hotel branding */}
               <div className="flex flex-col items-center gap-2 mb-2">
                 <div className="flex gap-1 text-gold text-2xl">★★★</div>
                 <h2
@@ -130,7 +113,6 @@ export default function BookingModal({ url, onClose }: BookingModalProps) {
                   Glamour · Élégance · Raffinement
                 </p>
               </div>
-
               <div className="max-w-sm">
                 <p className="text-text-mid text-sm leading-relaxed mb-1">
                   Vous allez accéder à notre système de réservation sécurisé.
@@ -139,8 +121,6 @@ export default function BookingModal({ url, onClose }: BookingModalProps) {
                   Meilleur tarif garanti · Paiement 100% sécurisé SSL
                 </p>
               </div>
-
-              {/* Trust badges */}
               <div className="flex flex-wrap justify-center gap-3">
                 {[
                   { icon: "🔒", label: "Paiement sécurisé" },
@@ -157,8 +137,6 @@ export default function BookingModal({ url, onClose }: BookingModalProps) {
                   </div>
                 ))}
               </div>
-
-              {/* CTA */}
               <button
                 onClick={openDirectly}
                 className="flex items-center gap-2 bg-bordeaux hover:bg-bordeaux-dark text-white font-semibold px-8 py-4 rounded-xl transition-colors text-base shadow-lg"
@@ -168,14 +146,11 @@ export default function BookingModal({ url, onClose }: BookingModalProps) {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
               </button>
-
-              <p className="text-xs text-text-mid/50">
-                S&apos;ouvre dans un nouvel onglet sécurisé
-              </p>
+              <p className="text-xs text-text-mid/50">S&apos;ouvre dans un nouvel onglet sécurisé</p>
             </div>
           )}
 
-          {/* iframe (tentative) */}
+          {/* iframe — affiché directement, CSP de SiteMinder autorise leglamshotel.com */}
           <iframe
             ref={iframeRef}
             src={url}
@@ -183,7 +158,8 @@ export default function BookingModal({ url, onClose }: BookingModalProps) {
             title="Réservation Glam's Hôtel"
             allow="payment"
             loading="eager"
-            onLoad={handleIframeLoad}
+            onLoad={() => setLoading(false)}
+            onError={() => setFailed(true)}
           />
         </div>
 
@@ -198,7 +174,9 @@ export default function BookingModal({ url, onClose }: BookingModalProps) {
           <span className="text-rose/40">·</span>
           <span>Meilleur tarif garanti sur ce site</span>
           <span className="text-rose/40">·</span>
-          <span>Confirmation immédiate</span>
+          <button onClick={openDirectly} className="underline hover:text-bordeaux transition-colors">
+            Ouvrir dans un onglet
+          </button>
         </div>
       </div>
     </div>

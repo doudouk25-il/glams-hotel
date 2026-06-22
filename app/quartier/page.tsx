@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { breadcrumb } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Le Quartier — Glam's Hôtel Paris 14e | Porte d'Orléans, Denfert-Rochereau, Montparnasse",
@@ -15,7 +16,13 @@ export const metadata: Metadata = {
     "hotel paris south",
     "boutique hotel paris 14",
   ],
-  alternates: { canonical: "https://www.leglamshotel.com/quartier" },
+  alternates: {
+    canonical: "https://www.leglamshotel.com/quartier",
+    languages: {
+      "fr":        "https://www.leglamshotel.com/quartier",
+      "x-default": "https://www.leglamshotel.com/quartier",
+    },
+  },
 };
 
 const jsonLd = {
@@ -83,6 +90,10 @@ export default function QuartierPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb([{ name: "Le Quartier", url: "https://www.leglamshotel.com/quartier" }])) }}
       />
 
       <div className="h-16" />

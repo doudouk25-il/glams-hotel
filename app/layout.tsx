@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Lato } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import CookieBanner from "@/components/CookieBanner";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -19,7 +20,7 @@ const lato = Lato({
 export const metadata: Metadata = {
   title: "Glam's Hôtel Paris 14 — Hôtel Boutique 3 Étoiles | Paris 75014",
   description:
-    "Glam's Hôtel, hôtel boutique 3 étoiles au cœur du 14e arrondissement de Paris. 27 chambres décorées avec art, jardin & terrasse. Réservez en direct et économisez 7%. 47 Rue Beaunier, Paris.",
+    "Hôtel boutique 3 étoiles au cœur de Paris 14e. 27 chambres uniques, jardin privé & terrasse. Réservez en direct et économisez 7%. 47 Rue Beaunier, Paris.",
   keywords: [
     "hôtel Paris 14",
     "hotel boutique paris",
@@ -150,21 +151,39 @@ const jsonLdNavigation = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Hotel",
+  "@id": "https://www.leglamshotel.com/#hotel",
   name: "Glam's Hôtel",
   description:
     "Hôtel boutique 3 étoiles au cœur du 14e arrondissement de Paris. 27 chambres décorées avec art, jardin & terrasse.",
   url: "https://www.leglamshotel.com",
   telephone: "+33145409353",
   email: "reception@leglamshotel.com",
-  starRating: { "@type": "Rating", ratingValue: "3" },
+  logo: {
+    "@type": "ImageObject",
+    url: "https://www.leglamshotel.com/icon.png",
+    width: 512,
+    height: 512,
+  },
+  starRating: { "@type": "Rating", ratingValue: 3 },
   aggregateRating: {
     "@type": "AggregateRating",
-    ratingValue: "8.4",
-    bestRating: "10",
-    worstRating: "1",
+    ratingValue: 8.4,
+    bestRating: 10,
+    worstRating: 1,
     ratingCount: 312,
-    reviewCount: 312,
+    reviewCount: 247,
   },
+  review: [
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Sophie M." },
+      datePublished: "2025-03-15",
+      reviewBody: "Hôtel magnifique, chaque chambre est une œuvre d'art. Le jardin pour le petit-déjeuner est un vrai coup de cœur. Emplacement calme mais très bien desservi par le métro.",
+      name: "Un séjour inoubliable dans le 14e",
+      reviewRating: { "@type": "Rating", ratingValue: 9, bestRating: 10 },
+      publisher: { "@type": "Organization", name: "Booking.com" },
+    },
+  ],
   priceRange: "€€",
   address: {
     "@type": "PostalAddress",
@@ -189,8 +208,8 @@ const jsonLd = {
     { "@type": "LocationFeatureSpecification", name: "WiFi", value: true },
     { "@type": "LocationFeatureSpecification", name: "Chambres accessibles", value: true },
   ],
-  checkinTime: "15:00",
-  checkoutTime: "11:00",
+  checkinTime: "T15:00",
+  checkoutTime: "T11:00",
   numberOfRooms: 27,
   sameAs: [
     "https://www.booking.com/hotel/fr/glams.fr.html",
@@ -252,6 +271,22 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
+      {/* Consent Mode V2 — doit s'exécuter AVANT GTM */}
+      <Script id="consent-default" strategy="beforeInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          var stored = typeof localStorage !== 'undefined' && localStorage.getItem('glams_consent_v2');
+          var state = stored === 'granted' ? 'granted' : 'denied';
+          gtag('consent', 'default', {
+            ad_storage:         state,
+            analytics_storage:  state,
+            ad_user_data:       state,
+            ad_personalization: state,
+            wait_for_update:    500,
+          });
+        `}
+      </Script>
       {/* Google Ads — gtag.js AW-18203255112 */}
       <Script
         strategy="afterInteractive"
@@ -265,7 +300,10 @@ export default function RootLayout({
           gtag('config', 'AW-18203255112');
         `}
       </Script>
-      <body className="min-h-screen">{children}</body>
+      <body className="min-h-screen">
+        {children}
+        <CookieBanner />
+      </body>
     </html>
   );
 }
